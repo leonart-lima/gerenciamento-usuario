@@ -1,14 +1,19 @@
 package com.leonart.gerenciamentousuario.infrastructure.out.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "USUARIO")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class UsuarioJPAEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true, length = 36)
     private Long id;
 
     @Column(name = "login", nullable = false, length = 50)
