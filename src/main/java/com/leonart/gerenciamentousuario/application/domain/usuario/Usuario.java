@@ -27,6 +27,18 @@ public class Usuario {
         this.dataDaUltimaAlteracao = dataDaUltimaAlteracao;
         this.dataDeCriacao = dataDeCriacao;
         this.endereco = endereco;
+    }
+
+       public static Usuario with(
+            final Long id,
+            final String login,
+            final String email,
+            final String senha,
+            final String nome,
+            final LocalDateTime dataDaUltimaAlteracao,
+            final LocalDateTime dataDeCriacao,
+            final String endereco) {
+        return new Usuario(id, login, email, senha, nome, dataDaUltimaAlteracao, dataDeCriacao, endereco);
 
     }
 }
