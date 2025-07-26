@@ -10,21 +10,27 @@ tags:
   - name: Usuários
     description: Operações relacionadas a usuários
 paths:
-  /usuarios:
+  /usuarios/{id}:
     get:
       tags:
         - Usuários
-      summary: Lista todos os usuários
-      operationId: listarUsuarios
+      summary: Obtém um usuário por ID
+      operationId: obterUsuarioPorId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       responses:
         '200':
-          description: Lista de usuários
+          description: Usuário encontrado
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Usuario'
+                $ref: '#/components/schemas/Usuario'
+        '404':
+          description: Usuário não encontrado
     post:
       tags:
         - Usuários
@@ -39,6 +45,10 @@ paths:
       responses:
         '201':
           description: Usuário criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
 components:
   schemas:
     Usuario:
@@ -83,3 +93,25 @@ components:
         - dataDaUltimaAlteracao
         - dataDeCriacao
         - endereco
+    UsuarioDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        login:
+          type: string
+          maxLength: 50
+          example: leonart
+        email:
+          type: string
+          maxLength: 100
+          example: leonart@email.com
+        nome:
+          type: string
+          maxLength: 100
+          example: Leonart Lima
+      required:
+        - login
+        - email
+        - nome
